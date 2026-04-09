@@ -44,7 +44,49 @@ if role == "Admin":
     if password != "admin123":
         st.warning("Wrong admin password!")
         st.stop()
+if role == "Admin":
+    st.sidebar.title("🛠️ Admin Panel")
+    admin_page = st.sidebar.radio("Admin Actions", ["Add House", "Manage Houses", "Approve Submissions"])
 
+    if admin_page == "Manage Houses":
+        st.header("📊 All Houses")
+        c.execute("SELECT rowid, * FROM houses")
+        houses = c.fetchall()
+
+        for house in houses:
+            rowid = house[0]
+            st.subheader(f"{house[1]} - ₦{house[2]}")
+            st.write(f"Distance: {house[3]}")
+            st.write(f"Contact: {house[6]}")
+            st.image(house[4].split(","))
+            if house[5]:
+                st.video(house[5])
+            
+            if st.button(f"Delete House {rowid}"):
+                c.execute("DELETE FROM houses WHERE rowid=?", (rowid,))
+                con.commit()
+                st.success("✅ House deleted!")
+    
+    elif admin_page == "Approve Submissions":
+        st.header("📝 Agent Submissions")
+        c.execute("SELECT rowid, * FROM submissions")
+        submissions = c.fetchall()
+
+        for sub in submissions:
+            rowid = sub[0]
+            st.subheader(f"{sub[1]} - ₦{sub[2]}")
+            st.write(f"Distance: {sub[3]}")
+            st.write(f"Contact: {sub[6]}")
+            st.image(sub[4].split(","))
+            if sub[5]:
+                st.video(sub[5])
+
+            if st.button(f"Approve Submission {rowid}"):
+                c.execute("INSERT INTO houses (area, price, distance, image_paths, video_path, contact) VALUES (?, ?, ?, ?, ?, ?)",
+                          (sub[1], sub[2], sub[3], sub[4], sub[5], sub[6]))
+                c.execute("DELETE FROM submissions WHERE rowid=?", (rowid,))
+                con.commit()
+                st.success("✅ Submission approved and added to houses!")
 page = st.sidebar.radio("Navigate", ["Home", "Search", "Post House"])
 
 # ------------------ HOME ------------------
