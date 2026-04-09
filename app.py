@@ -1,7 +1,8 @@
 import streamlit as st
 import sqlite3 as sq
-st.title("🏠 FUTA House Finder")
-st.caption("Find trusted hostels around FUTA without stress")
+st.title("🏠 FUTA Homes")
+st.caption("Find verified hostels around campus — fast, safe, and stress-free.")
+st.warning("⚠️ Always inspect house physically before making payment.")
 
 # ------------------ PAGE CONFIG ------------------
 st.set_page_config(layout="wide")
