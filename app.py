@@ -48,6 +48,15 @@ h1, h2, h3 {
 
 con = sq.connect('houses.db')
 c = con.cursor()
+if st.button("View Database"):
+    c.execute('SELECT * FROM houses')
+    data = c.fetchall()
+    st.write(data)
+
+if st.button("Clear All Houses"):
+    c.execute("DROP TABLE houses")
+    con.commit()
+    st.success("All houses deleted!")
 c.execute('''
 CREATE TABLE IF NOT EXISTS houses(
     area TEXT,
