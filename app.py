@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3 as sq
 st.title("🏠 FUTA Homes")
 st.caption("Find verified hostels around campus — fast, safe, and stress-free.")
-st.warning("⚠️ Always inspect house physically before making payment.")
+st.info("⚠️ Always inspect house physically before making payment.")
 
 # ------------------ PAGE CONFIG ------------------
 st.set_page_config(layout="wide")
@@ -66,7 +66,7 @@ st.sidebar.title("🏠 FUTA Housing")
 page = st.sidebar.radio("Navigate", ["Home", "Search", "Post House"])
 
 # ------------------ HOME ------------------
-st.info("⚠️ Only contact verified agents. Always inspect house before payment.")
+
 if page == "Home":
     st.markdown('<div class="title">Find Your Perfect Hostel 🏠</div>', unsafe_allow_html=True)
     st.markdown('<div class="subtitle">Affordable housing around FUTA</div>', unsafe_allow_html=True)
