@@ -173,9 +173,5 @@ elif page == "Post House":
                 (area_input, price_input, distance_input, ",".join(images_paths), video_path, contact_input)
             )
             st.success("✅ House added directly!")
-        if house[3]:  # image exists
-        st.image(house[3])
-        else:
-            st.warning("No image available")
         
         con.commit()
