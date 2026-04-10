@@ -55,12 +55,16 @@ if role == "Admin":
 
         for house in houses:
             rowid = house[0]
-            st.subheader(f"{house[0]} - ₦{house[1]}")
-            st.write(f"Distance: {house[2]}")
-            st.write(f"Contact: {house[5]}")
-            st.image(house[3].split(','))
-            if house[4]:
-                st.video(house[4])
+            st.subheader(f"{house[1]} - ₦{house[2]}")
+            st.write(f"Distance: {house[3]}")
+            st.write(f"Contact: {house[6]}")
+            try:
+                if house[4]:
+                    st.image(house[4].split(","))
+            except:
+                st.warning("Image not available")
+            if house[5]:
+                st.video(house[5])
             
             if st.button(f"Delete House {rowid}"):
                 c.execute("DELETE FROM houses WHERE rowid=?", (rowid,))
@@ -74,12 +78,11 @@ if role == "Admin":
 
         for sub in submissions:
             rowid = sub[0]
-            st.subheader(f"{sub[0]} - ₦{sub[1]}")
-            st.write(f"Distance: {sub[2]}")
-            st.write(f"Contact: {sub[5]}")
-            st.image(sub[3].split(","))
-            if sub[4]:
-                st.video(sub[4])
+            st.subheader(f"{sub[1]} - ₦{sub[2]}")
+            st.write(f"Distance: {sub[3]}")
+            st.write(f"Contact: {sub[6]}")
+            if sub[5]:
+                st.video(sub[5])
 
             if st.button(f"Approve Submission {rowid}"):
                 c.execute("INSERT INTO houses (area, price, distance, image_paths, video_path, contact) VALUES (?, ?, ?, ?, ?, ?)",
