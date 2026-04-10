@@ -56,9 +56,9 @@ if role == "Admin":
         for house in houses:
             rowid = house[0]
             st.subheader(f"{house[1]} - ₦{house[2]}")
-            st.write(f"Distance: {house[3]}")
+            st.write(f"Distance: {house[4]}")
             st.write(f"Contact: {house[6]}")
-            st.image(house[4])
+            st.image(house[3])
             if house[5]:
                 st.video(house[5])
             
@@ -74,12 +74,12 @@ if role == "Admin":
 
         for sub in submissions:
             rowid = sub[0]
-            st.subheader(f"{sub[1]} - ₦{sub[2]}")
-            st.write(f"Distance: {sub[3]}")
-            st.write(f"Contact: {sub[6]}")
-            st.image(sub[4].split(","))
-            if sub[5]:
-                st.video(sub[5])
+            st.subheader(f"{sub[0]} - ₦{sub[1]}")
+            st.write(f"Distance: {sub[2]}")
+            st.write(f"Contact: {sub[5]}")
+            st.image(sub[3].split(","))
+            if sub[4]:
+                st.video(sub[4])
 
             if st.button(f"Approve Submission {rowid}"):
                 c.execute("INSERT INTO houses (area, price, distance, image_paths, video_path, contact) VALUES (?, ?, ?, ?, ?, ?)",
