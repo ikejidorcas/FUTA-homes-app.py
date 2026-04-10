@@ -147,6 +147,12 @@ elif page == "Post House":
             with open(img_path, "wb") as f:
                 f.write(img.getbuffer())
             images_paths.append(img_path)
+            if house[3]:  # image exists
+                st.image(house[3])
+            else:
+                st.warning("No image available")
+
+
 
         video_path = ""
         if uploaded_video:
