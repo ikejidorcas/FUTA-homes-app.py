@@ -36,10 +36,6 @@ con.commit()
 
 # ------------------ SIDEBAR ------------------
 st.sidebar.title("🏠 FUTA Housing")
-
-
-if house[4]:  # video exists
-    st.video(house[4])
 role = st.sidebar.selectbox("Login as", ["Student", "Agent", "Admin"])
 
 # Admin password
