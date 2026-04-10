@@ -36,6 +36,13 @@ con.commit()
 
 # ------------------ SIDEBAR ------------------
 st.sidebar.title("🏠 FUTA Housing")
+if house[3]:  # image exists
+    st.image(house[3])
+else:
+    st.warning("No image available")
+
+if house[4]:  # video exists
+    st.video(house[4])
 role = st.sidebar.selectbox("Login as", ["Student", "Agent", "Admin"])
 
 # Admin password
@@ -55,12 +62,12 @@ if role == "Admin":
 
         for house in houses:
             rowid = house[0]
-            st.subheader(f"{house[1]} - ₦{house[2]}")
-            st.write(f"Distance: {house[4]}")
-            st.write(f"Contact: {house[6]}")
+            st.subheader(f"{house[0]} - ₦{house[1]}")
+            st.write(f"Distance: {house[2]}")
+            st.write(f"Contact: {house[5]}")
             st.image(house[3])
-            if house[5]:
-                st.video(house[5])
+            if house[4]:
+                st.video(house[4])
             
             if st.button(f"Delete House {rowid}"):
                 c.execute("DELETE FROM houses WHERE rowid=?", (rowid,))
