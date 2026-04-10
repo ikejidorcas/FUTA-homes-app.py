@@ -58,7 +58,7 @@ if role == "Admin":
             st.subheader(f"{house[0]} - ₦{house[1]}")
             st.write(f"Distance: {house[2]}")
             st.write(f"Contact: {house[5]}")
-            st.image(house[3])
+            st.image(house[3].split(','))
             if house[4]:
                 st.video(house[4])
             
