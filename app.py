@@ -3,7 +3,7 @@ import sqlite3 as sq
 from pathlib import Path
 
 # ------------------ PAGE CONFIG ------------------
-st.set_page_config(page_title="FUTA Housing", layout="wide")
+st.set_page_config(page_title="FUTA NEST", layout="wide")
 
 # ------------------ DATABASE ------------------
 con = sq.connect('houses.db', check_same_thread=False)
